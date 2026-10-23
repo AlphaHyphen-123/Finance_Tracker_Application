@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocket Ledger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Pocket Ledger home"><span class="brand-mark">p</span><span>Pocket Ledger</span></a>
+        <div class="month-control"><button id="previousMonth" aria-label="Previous month">‹</button><span id="currentMonth"></span><button id="nextMonth" aria-label="Next month">›</button></div>
+        <button class="upload-small" id="topUpload">+ Add invoice</button>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">YOUR SPENDING, MADE CLEAR</p>
+          <h1>A calmer way to<br /><em>follow your money.</em></h1>
+          <p class="intro">Drop in the invoices you collect. Keep the good stuff in view.</p>
+        </div>
+        <div class="balance-card">
+          <p>This month</p>
+          <strong id="totalSpend">₹0</strong>
+          <span id="invoiceCount">0 invoices</span>
+          <div class="balance-line"><i></i></div>
+        </div>
+      </section>
+
+      <section class="category-summary" aria-label="Spending by category">
+        <article class="category-card food"><div class="category-icon">⌁</div><div><span>FOOD</span><strong id="foodTotal">₹0</strong><small id="foodCount">0 invoices</small></div><b>→</b></article>
+        <article class="category-card fuel"><div class="category-icon">◒</div><div><span>FUEL</span><strong id="fuelTotal">₹0</strong><small id="fuelCount">0 invoices</small></div><b>→</b></article>
+        <article class="category-card fun"><div class="category-icon">✦</div><div><span>FUN</span><strong id="funTotal">₹0</strong><small id="funCount">0 invoices</small></div><b>→</b></article>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading"><div><p class="eyebrow">YOUR DOCUMENTS</p><h2>Recent invoices</h2></div><button class="text-button" id="clearAll">Clear all</button></div>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload invoices">
+          <input id="fileInput" type="file" multiple accept="application/pdf,image/png,image/jpeg" />
+          <div class="drop-icon">↑</div>
+          <div><strong>Drop invoices here</strong><p>or <span>browse files</span> · PDF, PNG or JPEG</p></div>
+        </div>
+        <div class="invoice-list" id="invoiceList"></div>
+        <div class="empty-state" id="emptyState"><div>✦</div><h3>Your ledger is ready.</h3><p>Upload an invoice to start organizing your spending.</p></div>
+      </section>
+    </main>
+
+    <template id="invoiceTemplate">
+      <article class="invoice-row">
+        <div class="file-type"></div>
+        <div class="invoice-name"><strong></strong><span></span></div>
+        <label class="field amount-field"><span>AMOUNT</span><input type="number" min="0" step="0.01" placeholder="0.00" /></label>
+        <label class="field category-field"><span>CATEGORY</span><select><option value="food">Food</option><option value="fuel">Fuel</option><option value="fun">Fun</option></select></label>
+        <a class="view-file" target="_blank" rel="noreferrer">View</a>
+        <button class="delete-button" aria-label="Remove invoice">×</button>
+      </article>
+    </template>
+    <script src="app.js"></script>
+  </body>
+</html>
